@@ -1,0 +1,196 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        background: linear-gradient(135deg, #ff4d6d, #ff8fab);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        font-size: 22px;
+        animation: float 7s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes float {
+        from {
+            transform: translateY(110vh) scale(1);
+        }
+        to {
+            transform: translateY(-10vh) scale(1.5);
+        }
+    }
+
+    .container {
+        z-index: 10;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 25px;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        position: relative;
+    }
+
+    button {
+        padding: 14px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        font-weight: bold;
+    }
+
+    #yesBtn {
+        background: #00c853;
+        color: white;
+    }
+
+    #noBtn {
+        background: #d50000;
+        color: white;
+        position: absolute;
+    }
+
+    /* Result screen */
+    #result {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #result h2 {
+        font-size: 30px;
+        font-weight: 900;
+        color: white;
+        text-shadow: 2px 2px 10px black;
+    }
+
+    #result img {
+        width: 120px;
+        border-radius: 15px;
+    }
+
+    .cute-msg {
+        font-size: 16px;
+        color: #fff;
+        max-width: 300px;
+        line-height: 1.4;
+        font-weight: 500;
+        text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+    }
+
+    /* Graffiti emojis */
+    .graffiti {
+        position: absolute;
+        font-size: 28px;
+        animation: pop 2.5s infinite alternate;
+    }
+
+    @keyframes pop {
+        from { transform: scale(1) rotate(0deg); }
+        to { transform: scale(1.4) rotate(20deg); }
+    }
+</style>
+</head>
+
+<body>
+
+<script>
+    // Floating hearts
+    for (let i = 0; i < 35; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+        document.body.appendChild(heart);
+    }
+</script>
+
+<div class="container" id="main">
+    <h1>Atul,<br>WILL YOU BE MY VALENTINE? 💘</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">YES 💖</button>
+        <button id="noBtn">NO 💔</button>
+    </div>
+</div>
+
+<div class="container" id="result">
+    <h2>I KNEW YOU LOVE ME 💃❤️</h2>
+
+    <img src="https://tenor.com/en-IN/view/kiss-girl-gif-21626090.gif" alt="Dancing Girl">
+
+    <div class="cute-msg">
+        To my handsome Valentine & my forever husband 💖<br>
+        You are my favorite smile, my safest place, and my happiest forever.
+        Loving you is the easiest YES of my life 😘❤️
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const main = document.getElementById("main");
+    const result = document.getElementById("result");
+
+    function moveNo() {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 120);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    // NO button escape
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    // YES click
+    yesBtn.addEventListener("click", () => {
+        main.style.display = "none";
+        result.style.display = "flex";
+
+        // Graffiti everywhere
+        const emojis = ["💖","🔥","🎉","❤️","💥","😍"];
+        for (let i = 0; i < 30; i++) {
+            let g = document.createElement("div");
+            g.className = "graffiti";
+            g.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            g.style.left = Math.random() * 100 + "vw";
+            g.style.top = Math.random() * 100 + "vh";
+            document.body.appendChild(g);
+        }
+    });
+</script>
+
+</body>
+</html>
